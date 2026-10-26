@@ -1,0 +1,113 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Alert</title>
+
+    <style>
+        body {
+            margin: 0;
+            background: #050505;
+            color: #00ff66;
+            font-family: Consolas, monospace;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        #screen {
+            padding: 25px;
+        }
+
+        h1 {
+            color: red;
+            font-size: clamp(28px, 5vw, 55px);
+            animation: blink 1s infinite;
+        }
+
+        #terminal {
+            white-space: pre-line;
+            line-height: 1.8;
+        }
+
+        #count {
+            font-size: 55px;
+            margin: 20px;
+        }
+
+        #reveal {
+            display: none;
+            color: #00ff66;
+            font-size: clamp(30px, 6vw, 60px);
+        }
+
+        @keyframes blink {
+            50% { opacity: 0.3; }
+        }
+    </style>
+</head>
+
+<body>
+    <main id="screen">
+        <h1 id="heading">⚠ SYSTEM LOCKED ⚠</h1>
+
+        <div id="terminal">Initializing system scan...
+Scanning files...
+Security alert detected...
+Simulated lock sequence started...</div>
+
+        <div id="count">30</div>
+
+        <h2 id="reveal">JUST A PRANK 😂</h2>
+
+        <p id="hint">Press Ctrl + E to exit the prank.</p>
+    </main>
+
+    <script>
+        const duration = 30;
+        let seconds = duration;
+
+        const count = document.getElementById("count");
+        const heading = document.getElementById("heading");
+        const terminal = document.getElementById("terminal");
+        const reveal = document.getElementById("reveal");
+        const hint = document.getElementById("hint");
+
+        count.textContent = duration;
+
+        const timer = setInterval(() => {
+            seconds--;
+            count.textContent = seconds;
+
+            if (seconds <= 0) {
+                clearInterval(timer);
+
+                heading.textContent = "SYSTEM RESTORED";
+                heading.style.color = "#00ff66";
+
+                terminal.textContent =
+                    "System simulation complete.\nNo files were changed.";
+
+                count.style.display = "none";
+                reveal.style.display = "block";
+                hint.textContent = "Press Ctrl + E to exit.";
+            }
+        }, 1000);
+
+        // Ctrl + E: exit the prank page.
+        // This returns to a normal page; kiosk mode may still need
+        // to be closed using Alt + F4.
+        document.addEventListener("keydown", function(event) {
+            if (event.ctrlKey && event.key.toLowerCase() === "e") {
+                event.preventDefault();
+                window.close();
+            }
+        });
+    </script>
+</body>
+</html>
+```
