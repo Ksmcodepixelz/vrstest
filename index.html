@@ -1,4 +1,4 @@
-<html>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -64,24 +64,28 @@ Simulated lock sequence started...</div>
 
         <h2 id="reveal">JUST A PRANK 😂</h2>
 
-        <p id="hint">Press Ctrl + E to exit the prank.</p>
+        <p id="hint"></p>
+        <p id="111">1</p>
+        <input id="code" type="username" placeholder="code"><button id="submit" onclick="sub()">ok</button>
     </main>
 
     <script>
-        const duration = 30;
-        let seconds = duration;
+
+
 
         const count = document.getElementById("count");
         const heading = document.getElementById("heading");
         const terminal = document.getElementById("terminal");
         const reveal = document.getElementById("reveal");
         const hint = document.getElementById("hint");
+        const pass="virspass";
 
         count.textContent = duration;
 
         const timer = setInterval(() => {
             seconds--;
             count.textContent = seconds;
+        
 
             if (seconds <= 0) {
                 clearInterval(timer);
@@ -94,7 +98,7 @@ Simulated lock sequence started...</div>
 
                 count.style.display = "none";
                 reveal.style.display = "block";
-                hint.textContent = "Press Ctrl + E to exit.";
+                
             }
         }, 1000);
 
@@ -107,6 +111,19 @@ Simulated lock sequence started...</div>
                 window.close();
             }
         });
+        console.log("Typed:", JSON.stringify(code1));
+        console.log("Expected:", JSON.stringify(pass));
+        function sub(){
+        const code1= document.getElementById("code").value;          
+          if (code1===pass){
+                document.getElementById("111").textContent="assess ok";
+                document.getElementById("hint").textContent="to exit press alt+f4 if it wont work try ctrl+e             .good luck!! "
+            }else{
+                document.getElementById("111").textContent="assess denied";
+            }
+        }
+
+       
     </script>
 </body>
 </html>
